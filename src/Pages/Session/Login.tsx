@@ -9,7 +9,11 @@ import {checkPassword, checkUsername} from './utils'
 
 const {useState, useCallback} = React
 
-const Login: React.FC<{}> = () => {
+interface LoginProps {
+	name: string
+}
+
+const Login: React.SFC<LoginProps> = () => {
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
 
@@ -34,9 +38,7 @@ const Login: React.FC<{}> = () => {
 	return (
 		<div className={styles.container}>
 			<section className={styles.loginBlock}>
-				<header className={styles.header}>
-					<p>登录</p>
-				</header>
+				<header className={styles.header}>登录</header>
 				<div className={styles.inputContainer}>
 					<div className={styles.inputTitle}>
 						<p>用户名</p>

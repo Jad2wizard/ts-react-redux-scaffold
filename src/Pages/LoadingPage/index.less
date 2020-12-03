@@ -1,0 +1,23 @@
+.container > h1 {
+	&:after {
+		overflow: hidden;
+		display: inline-block;
+		vertical-align: bottom;
+		content: '\2026';
+		animation: ellipsis 2s infinite;
+	}
+	@keyframes ellipsis {
+		0% {
+			width: 0px;
+		}
+		33.3% {
+			width: 6.66px;
+		}
+		66.7% {
+			width: 13.33px;
+		}
+		100% {
+			width: 20px;
+		}
+	}
+}

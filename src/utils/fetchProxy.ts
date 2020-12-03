@@ -1,5 +1,5 @@
 // import {routerActions} from 'react-router-redux'
-import store from '../store'
+import store from '../Store'
 
 interface Param {
 	method?: string

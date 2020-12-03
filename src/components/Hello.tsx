@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {Button} from 'antd'
+import {Button, Input} from 'antd'
 import {getExclamationMarks} from 'utils'
 //import * as THREE from 'three'
 // import {OrbitControls} from 'three-examples/jsm/controls/OrbitControls'
@@ -28,7 +28,9 @@ const Hello: React.FC<Props> = ({name, enthusiasmLevel = 1}: Props) => {
 
 	return (
 		<div className={styles.hello}>
-			<div className={styles.greeting}>Hello {name + getExclamationMarks(count)}</div>
+			<div className={styles.greeting}>
+				Hello {name + getExclamationMarks(count)}
+			</div>
 			<Button onClick={handleClick}>点击</Button>
 		</div>
 	)

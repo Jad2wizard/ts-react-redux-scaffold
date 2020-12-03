@@ -6,6 +6,7 @@ import {BrowserRouter as Router} from 'connect-redux-react-router'
 import store from './Store'
 import Login from './Pages/Session/Login'
 import Layout from './Pages/Layout'
+import NotFoundPage from './Pages/NotFoundPage'
 import styles from './index.less'
 
 /* eslint-disable */
@@ -16,16 +17,24 @@ if ((module as any).hot) {
 
 const App: React.FC<{}> = () => {
 	return (
-		<Layout>
-			<div>
+		<div>
+			<Layout>
 				<Router store={store}>
+					<Route exact path="/">
+						<h1>Hello</h1>
+					</Route>
 					<Route path="/login">
-						<Login />
+						<Login name="test" />
 					</Route>
 				</Router>
-			</div>
-		</Layout>
+			</Layout>
+		</div>
 	)
 }
 
-ReactDOM.render(<App />, document.querySelector('#main'))
+ReactDOM.render(
+	<Provider store={store}>
+		<App />
+	</Provider>,
+	document.querySelector('#main')
+)

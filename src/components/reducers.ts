@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
 
-const rootReducer = combineReducers({})
+export const rootReducer = combineReducers({test})
 
 export type RootState = ReturnType<typeof rootReducer>

@@ -37,7 +37,10 @@ export interface LoginErrorAction extends ErrorAction {
 	type: typeof LOGIN_ERROR
 }
 
-export type LoginAction = LoginRequestAction | LoginReceiveAction | LoginErrorAction
+export type LoginAction =
+	| LoginRequestAction
+	| LoginReceiveAction
+	| LoginErrorAction
 
 export type LoginActionParam = RegisterActionParam
 
@@ -53,7 +56,10 @@ export interface RegisterErrorAction extends ErrorAction {
 	type: typeof REGISTER_ERROR
 }
 
-export type RegisterAction = RegisterRequestAction | RegisterReceiveAction | RegisterErrorAction
+export type RegisterAction =
+	| RegisterRequestAction
+	| RegisterReceiveAction
+	| RegisterErrorAction
 
 export type RegisterActionParam =
 	| {
@@ -75,6 +81,8 @@ export type LogoutAction =
 	| {type: typeof LOGOUT_RECEIVE}
 	| {type: typeof LOGOUT_ERROR; error: string}
 
-export type LogoutActionParam = {status: 'request' | 'receive'} | {status: 'error'; error: string}
+export type LogoutActionParam =
+	| {status: 'request' | 'receive'}
+	| {status: 'error'; error: string}
 
 export type SessionAction = RegisterAction | LoginAction | LogoutAction

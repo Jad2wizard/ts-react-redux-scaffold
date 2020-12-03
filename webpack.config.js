@@ -2,8 +2,10 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path')
 const webpack = require('webpack')
-const {port} = require('./config.json')
 const {TsConfigPathsPlugin} = require('awesome-typescript-loader')
+const CompressionPlugin = require('compression-webpack-plugin')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+const {port} = require('./config.json')
 
 // prettier-ignore
 module.exports = (env, argv) => {
@@ -65,10 +67,9 @@ module.exports = (env, argv) => {
 			]
 		},
 		plugins: [
-			new webpack.DllReferencePlugin({
-				context: __dirname,
-				manifest: require(__dirname + '/dist/js/manifest.json')
-			}),
+			//@babel/typescript 不会检查typescript语法错误，
+			//加上该插件可以在webpack构建时因为ts语法错误而终止构建
+			new ForkTsCheckerWebpackPlugin()
 		]
 	}
 
@@ -77,9 +78,16 @@ module.exports = (env, argv) => {
 		config.devtool = 'inline-source-map'
 		config.plugins.push(new webpack.optimize.OccurrenceOrderPlugin())
 		config.plugins.push(new webpack.HotModuleReplacementPlugin())
+		config.plugins.push(
+			new webpack.DllReferencePlugin({
+				context: __dirname,
+				manifest: require(__dirname + '/dist/js/manifest.json')
+			})
+		)
 	} else {
 		config.mode = 'production'
 		config.devtool = 'source-map'
+		config.plugins.push(new CompressionPlugin({}))
 	}
 	return config
 }

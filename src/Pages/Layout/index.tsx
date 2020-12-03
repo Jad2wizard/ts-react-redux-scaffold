@@ -1,9 +1,14 @@
 import * as React from 'react'
-import {Layout} from 'antd'
+import {Layout, Menu} from 'antd'
+import {Link} from 'react-router-dom'
+import Header from './Header'
 
 const {Content} = Layout
+const {useState, useEffect, useMemo} = React
 
-type Props = {}
+type Props = {
+	children: React.ReactElement
+}
 
 const Home: React.FC<Props> = props => {
 	return (
@@ -13,4 +18,4 @@ const Home: React.FC<Props> = props => {
 	)
 }
 
-export default Home
+export default React.memo(Home)

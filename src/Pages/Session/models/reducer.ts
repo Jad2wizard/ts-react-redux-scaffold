@@ -42,9 +42,10 @@ const isLoading = (state = false, action: SessionAction): boolean => {
 	}
 }
 
-const sessionState = combineReducers({
+export const sessionState = combineReducers({
 	isLoading,
 	user
 })
 
-export default sessionState
+//export default sessionState
+export type RootState = ReturnType<typeof sessionState>
